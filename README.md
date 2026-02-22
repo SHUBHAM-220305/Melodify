@@ -5,6 +5,8 @@ It allows users to search songs, play previews, manage queues, create playlists,
 
 ---
 
+🌐 **Live Project**: https://shubham-220305.github.io/Melodify/
+
 ## 🚀 Features
 
 ### 🔥 Trending Section
