@@ -1,0 +1,215 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Melodify</title>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="app">
+      <aside class="sidebar">
+        <div>
+          <div class="brand">Melodify</div>
+          <div class="site-tag">Tune in - Zone out</div>
+        </div>
+        <nav class="nav" id="mainNav">
+          <button id="navHome" class="active">🏠 Home</button>
+          <button id="navSearch">🔍 Search</button>
+          <button id="navLibrary">📚 Your Library</button>
+        </nav>
+        <div class="playlist-section">
+          <div style="font-weight: 700; color: #fff; margin-bottom: 8px">
+            Playlists
+          </div>
+          <div class="playlist-list" id="playlistList">
+            <button data-playlist="liked">✨ Liked Songs</button>
+            <button data-playlist="tophits">🔥 Top Hits</button>
+            <button data-playlist="chill">🌙 Chill Vibes</button>
+          </div>
+        </div>
+      </aside>
+      <main class="content" id="mainContent">
+        <div class="topbar">
+          <div class="search" id="searchBox">
+            <button class="btn" style="color: #fff; font-size: 18px">🔎</button>
+            <input
+              id="searchInput"
+              placeholder="Search songs, artists, or podcasts"
+              aria-label="Search songs"
+            />
+            <button id="searchBtn" class="btn" style="color: var(--accent)">
+              Go
+            </button>
+          </div>
+          <div class="filters">
+            <button
+              id="trendingBtn"
+              class="btn active"
+              style="
+                background: var(--glass);
+                color: #fff;
+                border-radius: 18px;
+                padding: 8px 14px;
+              "
+            >
+              🔥 Trending
+            </button>
+          </div>
+        </div>
+        <section id="homeSection">
+          <h3 id="homeHeading" style="margin: 0 0 12px 0">
+            🔥 Trending Right Now
+          </h3>
+          <div id="resultsGrid" class="trending-grid"></div>
+        </section>
+        <section id="searchSection" style="display: none; margin-top: 28px">
+          <h3 style="margin: 0 0 12px 0">🔎 Search Results</h3>
+          <div id="resultsList" class="list"></div>
+        </section>
+        <section id="librarySection" style="display: none; margin-top: 28px">
+          <h3 style="margin: 0 0 12px 0">📚 Your Library</h3>
+          <div
+            id="libraryContent"
+            style="
+              color: var(--muted);
+              padding: 18px;
+              background: var(--panel);
+              border-radius: 10px;
+            "
+          >
+            <div
+              style="
+                display: flex;
+                gap: 8px;
+                align-items: center;
+                margin-bottom: 10px;
+              "
+            >
+              <input
+                id="newPlaylistName"
+                placeholder="New playlist name"
+                style="
+                  flex: 1;
+                  padding: 8px;
+                  border-radius: 6px;
+                  border: 0;
+                  background: #111;
+                  color: #fff;
+                "
+              />
+              <button id="createPlaylistBtn" class="btn">Save</button>
+            </div>
+            <div><strong>Saved playlists</strong></div>
+            <div id="savedLists" style="margin-top: 10px"></div>
+          </div>
+        </section>
+      </main>
+      <aside class="right">
+        <div
+          style="
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+          "
+        >
+          <h4 style="margin: 0">🎶 Up Next</h4>
+          <div style="font-size: 12px; color: var(--muted)">Queue</div>
+        </div>
+        <div class="queue" id="queue"></div>
+        <div style="border-top: 1px solid var(--border); padding-top: 12px">
+          <div style="font-weight: 700; margin-bottom: 10px">
+            Add to Playlist
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 8px">
+            <button
+              id="savePlaylistBtn"
+              class="btn"
+              style="
+                background: var(--glass);
+                border-radius: 8px;
+                padding: 10px;
+                text-align: left;
+              "
+            >
+              💾 Save Current Queue
+            </button>
+            <button
+              id="loadPlaylistBtn"
+              class="btn"
+              style="
+                background: var(--glass);
+                border-radius: 8px;
+                padding: 10px;
+                text-align: left;
+              "
+            >
+              📂 Load Saved Playlist
+            </button>
+            <button
+              id="clearQueueBtn"
+              class="btn"
+              style="
+                background: var(--glass);
+                border-radius: 8px;
+                padding: 10px;
+                text-align: left;
+              "
+            >
+              🗑️ Clear Queue
+            </button>
+          </div>
+        </div>
+      </aside>
+    </div>
+    <div class="player-bar" role="region" aria-label="Player bar">
+      <div class="now-playing">
+        <img
+          id="barCover"
+          src=""
+          alt="cover"
+          onerror="this.style.opacity = 0"
+        />
+        <div>
+          <div id="barTitle" style="font-weight: 700">Not playing</div>
+          <div id="barArtist" style="font-size: 13px; color: var(--muted)">
+            —
+          </div>
+        </div>
+      </div>
+      <div class="controls">
+        <button id="prevBtn" class="btn">⏮</button>
+        <button id="playBtn" class="btn play">▶</button>
+        <button id="nextBtn" class="btn">⏭</button>
+      </div>
+      <div class="progress">
+        <span
+          id="curTime"
+          style="width: 36px; text-align: right; flex-shrink: 0"
+          >0:00</span
+        >
+        <div class="bar" id="progressBar"><div id="progressFill"></div></div>
+        <span id="durTime" style="width: 36px; flex-shrink: 0">0:00</span>
+      </div>
+      <div class="right-controls">
+        <button id="shuffleBtn" class="btn">🔀</button>
+        <button id="favBtn" class="btn">🤍</button>
+        <input
+          id="vol"
+          type="range"
+          min="0"
+          max="1"
+          step="0.01"
+          value="0.9"
+          aria-label="Volume"
+        />
+      </div>
+    </div>
+    <audio id="audio" crossorigin></audio>
+    <script src="script.js"></script>
+  </body>
+</html>
